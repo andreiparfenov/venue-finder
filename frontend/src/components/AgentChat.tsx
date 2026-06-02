@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Filters } from './FilterBar';
+import { api } from '../api';
 
 interface Msg { role: 'user' | 'assistant'; content: string }
 
@@ -28,7 +29,7 @@ export default function AgentChat({ onSearch, onFiltersChange, loading }: Props)
     setThinking(true);
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(api.chat, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -26,6 +26,7 @@ services:
       context: ./frontend
       args:
         - VITE_GOOGLE_MAPS_KEY=${VITE_GOOGLE_MAPS_KEY}
+        - VITE_API_URL=${VITE_API_URL:-}
     restart: unless-stopped
     ports:
       - "80:80"

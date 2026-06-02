@@ -5,6 +5,7 @@ import VenueCard from './components/VenueCard';
 import FilterBar, { Filters, defaultFilters } from './components/FilterBar';
 import AgentChat from './components/AgentChat';
 import { Venue, SearchResponse } from './types';
+import { api } from './api';
 
 export default function App() {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -31,7 +32,7 @@ export default function App() {
     venues.forEach(v => {
       if (v.insights || fetchedRef.current.has(v.place_id)) return;
       fetchedRef.current.add(v.place_id);
-      fetch('/api/insights', {
+      fetch(api.insights, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ place_id: v.place_id, city }),
@@ -63,7 +64,7 @@ export default function App() {
     setCity(city);
     setFilters({ ...defaultFilters, ...presetFilters });
     try {
-      const res = await fetch('/api/venues', {
+      const res = await fetch(api.venues, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ city, neighborhood }),
