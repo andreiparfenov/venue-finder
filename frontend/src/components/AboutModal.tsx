@@ -71,7 +71,7 @@ export default function AboutModal({ onClose }: Props) {
         </Section>
 
         <p style={{ fontSize: 11, color: '#ccc', textAlign: 'center', marginTop: 8 }}>
-          Both AI models are open-source.{' '}
+          Both AI models are open-source.
         </p>
       </div>
     </div>

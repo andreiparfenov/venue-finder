@@ -35,4 +35,5 @@ export interface VenueResult {
   photos?: string[];
   booking: BookingInfo;
   insights: Insights;
+  _raw?: Record<string, any>; // raw Google data stored for the insights route
 }

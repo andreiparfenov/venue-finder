@@ -30,7 +30,7 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Parallel scraping (Google Maps page removed — always JS-rendered, returns nothing)
     const [scraped, webSearch, eventsSearch] = await Promise.all([
-      website ? scrapeWebsite(website) : Promise.resolve({ menuText: '', bookingUrl: undefined, instagramUrl: undefined }),
+      website ? scrapeWebsite(website) : Promise.resolve({ menuText: '', bookingUrl: undefined, instagramUrl: undefined, menuUrl: undefined }),
       searchDietaryInfo(name, city),
       searchEvents(name, city),
     ]);
