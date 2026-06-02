@@ -2,6 +2,8 @@
 
 AI-powered restaurant search. You can search by city and area, get AI-generated insights on vibe, dietary options, noise level, price range, upcoming events, and booking links.
 
+Live demo: https://venue-finder.up.railway.app
+
 ---
 
 ## Features
