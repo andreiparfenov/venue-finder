@@ -32,8 +32,8 @@ Live demo: https://venue-finder.up.railway.app
 | Database    | MongoDB (Mongoose)                                                                               |
 | Maps        | Google Maps JavaScript API                                                                       |
 | Places data | Google Places API (New) v1                                                                       |
-| AI insights | Nebius AI Studio — `meta-llama/Llama-3.3-70B-Instruct` + `Qwen/Qwen2.5-VL-72B-Instruct` (vision) |
-| Agent chat  | Nebius AI Studio — `meta-llama/Llama-3.3-70B-Instruct`                                           |
+| AI insights | Nebius Token Factory — `meta-llama/Llama-3.3-70B-Instruct` + `Qwen/Qwen2.5-VL-72B-Instruct` (vision) |
+| Agent chat  | Nebius Token Factory — `meta-llama/Llama-3.3-70B-Instruct`                                           |
 
 ---
 
@@ -42,7 +42,7 @@ Live demo: https://venue-finder.up.railway.app
 - Node 18+
 - MongoDB (local or Atlas)
 - [Google Cloud](https://console.cloud.google.com/) project with **Places API (New)** and **Maps JavaScript API** enabled
-- [Nebius AI Studio](https://studio.nebius.com/) account with API key
+- [Nebius Token Factory](https://tokenfactory.nebius.com/) account with API key
 
 ---
 
@@ -95,7 +95,7 @@ npm run dev
 | Variable                | Description                                                              |
 | ----------------------- | ------------------------------------------------------------------------ |
 | `GOOGLE_PLACES_API_KEY` | Google Places API (New) key — used server-side only                      |
-| `NEBIUS_API_KEY`        | Nebius AI Studio API key                                                 |
+| `NEBIUS_API_KEY`        | Nebius Token Factory API key                                                 |
 | `MONGODB_URI`           | MongoDB connection string, e.g. `mongodb://localhost:27017/venue-finder` |
 | `PORT`                  | Express port (default `3001`)                                            |
 
