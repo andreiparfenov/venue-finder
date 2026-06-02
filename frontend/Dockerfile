@@ -15,7 +15,5 @@ RUN npm run build
 # Stage 2 — serve with nginx + proxy /api to backend
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
-# Store as a template so envsubst can inject Railway's $PORT at container start
-COPY nginx.conf /etc/nginx/conf.d/default.conf.template
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
