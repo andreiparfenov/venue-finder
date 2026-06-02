@@ -10,7 +10,14 @@ import chatRoutes from './routes/chat';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // explicitly handle preflight for all routes
 app.use(express.json());
 
 mongoose
