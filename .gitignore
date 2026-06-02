@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment — NEVER commit real keys
+.env
+*/.env
+backend/.env
+frontend/.env
+
+# Build output
+dist/
+build/
+*/dist/
+*/build/
+
+# Vite cache
+.vite/
+*/.vite/
+
+# TypeScript incremental build
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# MongoDB local data (if running locally via docker-compose)
+mongo-data/

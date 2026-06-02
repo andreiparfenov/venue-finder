@@ -1,0 +1,17 @@
+# Stage 1 — build the Vite bundle
+# VITE_GOOGLE_MAPS_KEY must be passed as a build arg because Vite
+# bakes env vars into the bundle at compile time, not runtime.
+FROM node:18-alpine AS builder
+WORKDIR /app
+ARG VITE_GOOGLE_MAPS_KEY
+ENV VITE_GOOGLE_MAPS_KEY=$VITE_GOOGLE_MAPS_KEY
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2 — serve with nginx + proxy /api to backend
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
