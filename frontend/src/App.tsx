@@ -4,6 +4,7 @@ import MapView from './components/MapView';
 import VenueCard from './components/VenueCard';
 import FilterBar, { Filters, defaultFilters } from './components/FilterBar';
 import AgentChat from './components/AgentChat';
+import AboutModal from './components/AboutModal';
 import { Venue, SearchResponse } from './types';
 import { api } from './api';
 
@@ -17,6 +18,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [mode, setMode] = useState<'search' | 'agent'>('search');
+  const [showAbout, setShowAbout] = useState(false);
   const mapRef      = useRef<google.maps.Map | null>(null);
   const cardListRef = useRef<HTMLDivElement>(null);
   const fetchedRef  = useRef<Set<string>>(new Set());
@@ -117,7 +119,10 @@ export default function App() {
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
       <div style={sidebar}>
         <div style={sidebarHead}>
-          <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 12, color: '#222' }}>Venue Finder</h1>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <h1 style={{ fontSize: 20, fontWeight: 700, color: '#222' }}>Venue Finder</h1>
+            <button onClick={() => setShowAbout(true)} style={aboutBtn} title="About this app">?</button>
+          </div>
           <div style={toggleRow}>
             <button style={mode === 'search' ? activeTab : tab} onClick={() => setMode('search')}>🔍 Search</button>
             <button style={mode === 'agent'  ? activeTab : tab} onClick={() => setMode('agent')}>🤖 Agent</button>
@@ -163,10 +168,13 @@ export default function App() {
       <div style={{ flex: 1, height: '100vh' }}>
         <MapView venues={filteredVenues} onMapReady={handleMapReady} onVenueSelect={setSelectedId} />
       </div>
+
+      {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
     </div>
   );
 }
 
+const aboutBtn: React.CSSProperties = { width: 26, height: 26, borderRadius: '50%', border: '1.5px solid #ddd', background: '#f5f5f5', fontSize: 13, fontWeight: 700, color: '#888', cursor: 'pointer', lineHeight: '23px', textAlign: 'center', flexShrink: 0 };
 const toggleRow: React.CSSProperties = { display: 'flex', gap: 6, marginBottom: 12 };
 const tab: React.CSSProperties = { flex: 1, padding: '6px 0', borderRadius: 8, border: '1px solid #ddd', background: '#f5f5f5', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#666' };
 const activeTab: React.CSSProperties = { ...tab, background: '#4285F4', borderColor: '#4285F4', color: '#fff' };
